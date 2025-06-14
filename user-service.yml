@@ -2,17 +2,27 @@
 server:
   port: 8081
 
+
 spring:
+  application:
+    name: user-service
+
+  config:
+    import: configserver:http://localhost:8888
+
   datasource:
-    url: jdbc:mysql://localhost:3306/userdb
+    url: jdbc:mysql://localhost:3306/courses_db
     username: root
     password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-  application:
-    name: user-service
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
 eureka:
   client:
